@@ -1261,22 +1261,36 @@
     }
 
     .color-panel {
-      min-height: 100px;
+      min-height: 116px;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 34px;
-      padding: 20px;
+      gap: 42px;
+      padding: 22px 28px;
       border-bottom: 1px solid var(--line);
       background: var(--white);
     }
 
-    .color-panel > span {
+    .control-group {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+    }
+
+    .control-label {
+      flex: 0 0 auto;
       color: var(--muted);
       font-size: 0.67rem;
       font-weight: 700;
       letter-spacing: 0.18em;
       text-transform: uppercase;
+    }
+
+    .control-divider {
+      width: 1px;
+      height: 48px;
+      flex: 0 0 1px;
+      background: var(--line);
     }
 
     .color-options {
@@ -1331,6 +1345,91 @@
       height: 100%;
       opacity: 0;
       cursor: pointer;
+    }
+
+    .finish-options {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .finish-option {
+      min-height: 42px;
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 8px 12px 8px 9px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #f8fbff;
+      color: var(--ink);
+      font-family: var(--body);
+      font-size: 0.72rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: border-color 160ms ease, background 160ms ease, color 160ms ease, transform 160ms ease;
+    }
+
+    .finish-option:hover {
+      border-color: #9abde8;
+      transform: translateY(-1px);
+    }
+
+    .finish-option.active {
+      border-color: var(--blue);
+      background: var(--blue);
+      color: var(--white);
+      box-shadow: 0 7px 18px rgba(35,104,196,0.2);
+    }
+
+    .finish-preview {
+      position: relative;
+      width: 25px;
+      height: 25px;
+      flex: 0 0 25px;
+      overflow: hidden;
+      border: 1px solid rgba(10,19,32,0.14);
+      border-radius: 50%;
+      background: var(--finish-bg, #9aa9bb);
+    }
+
+    .finish-preview::after {
+      position: absolute;
+      inset: 4px 5px auto;
+      height: 5px;
+      border-radius: 50%;
+      background: rgba(255,255,255,var(--shine, 0.75));
+      filter: blur(var(--shine-blur, 0));
+      content: "";
+    }
+
+    .finish-glossy {
+      --finish-bg: linear-gradient(145deg, #31445d 4%, #dcecff 43%, #29466b 78%);
+      --shine: 0.95;
+    }
+
+    .finish-metallic {
+      --finish-bg: repeating-linear-gradient(135deg, #263a55 0 2px, #7895b8 2px 4px, #d2dfef 4px 5px);
+      --shine: 0.8;
+      --shine-blur: 1px;
+    }
+
+    .finish-matte {
+      --finish-bg: #667486;
+      --shine: 0.2;
+      --shine-blur: 2px;
+    }
+
+    .finish-pearl {
+      --finish-bg: linear-gradient(135deg, #fff 5%, #d7e7ff 38%, #f5ddff 66%, #fff 92%);
+      --shine: 0.82;
+    }
+
+    .finish-satin {
+      --finish-bg: linear-gradient(145deg, #647991, #b5c6d8 48%, #52667c);
+      --shine: 0.44;
+      --shine-blur: 1px;
     }
 
     @media (max-width: 980px) {
@@ -1560,7 +1659,32 @@
       .color-panel {
         align-items: flex-start;
         flex-direction: column;
-        gap: 16px;
+        gap: 22px;
+        padding: 22px 20px 26px;
+      }
+
+      .control-group {
+        width: 100%;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 13px;
+      }
+
+      .control-divider {
+        width: 100%;
+        height: 1px;
+        flex-basis: 1px;
+      }
+
+      .finish-options {
+        width: 100%;
+        gap: 8px;
+      }
+
+      .finish-option {
+        min-height: 40px;
+        padding: 7px 11px 7px 8px;
+        font-size: 0.68rem;
       }
 
       .color-dot,
@@ -1809,7 +1933,7 @@
 
         <div class="stage-chip finish-chip">
           <span>Finish</span>
-          <strong>Gloss · Clear Coat 2K</strong>
+          <strong id="studio-finish-name">Glossy · Clear Coat 2K</strong>
         </div>
 
         <div class="stage-chip color-chip">
@@ -1821,17 +1945,42 @@
       </div>
 
       <div class="color-panel">
-        <span>Ganti warna live</span>
-        <div class="color-options" aria-label="Pilihan warna mobil">
-          <button class="color-dot active" type="button" style="--dot:#a31313" data-color="#a31313" data-name="RKM Red" aria-label="Warna merah"></button>
-          <button class="color-dot" type="button" style="--dot:#171a1f" data-color="#171a1f" data-name="Onyx Black" aria-label="Warna hitam"></button>
-          <button class="color-dot" type="button" style="--dot:#c9cdd3" data-color="#c9cdd3" data-name="Silver" aria-label="Warna silver"></button>
-          <button class="color-dot" type="button" style="--dot:#193d67" data-color="#193d67" data-name="Deep Blue" aria-label="Warna biru"></button>
-          <button class="color-dot" type="button" style="--dot:#c18a2b" data-color="#c18a2b" data-name="Gold" aria-label="Warna emas"></button>
-          <button class="color-dot" type="button" style="--dot:#f4f1e9" data-color="#f4f1e9" data-name="Pearl White" aria-label="Warna putih"></button>
-          <label class="custom-color" aria-label="Pilih warna kustom">
-            <input id="custom-car-color" type="color" value="#2368c4">
-          </label>
+        <div class="control-group">
+          <span class="control-label">Warna cat</span>
+          <div class="color-options" aria-label="Pilihan warna mobil">
+            <button class="color-dot active" type="button" style="--dot:#a31313" data-color="#a31313" data-name="RKM Red" aria-label="Warna merah"></button>
+            <button class="color-dot" type="button" style="--dot:#171a1f" data-color="#171a1f" data-name="Onyx Black" aria-label="Warna hitam"></button>
+            <button class="color-dot" type="button" style="--dot:#c9cdd3" data-color="#c9cdd3" data-name="Silver" aria-label="Warna silver"></button>
+            <button class="color-dot" type="button" style="--dot:#193d67" data-color="#193d67" data-name="Deep Blue" aria-label="Warna biru"></button>
+            <button class="color-dot" type="button" style="--dot:#c18a2b" data-color="#c18a2b" data-name="Gold" aria-label="Warna emas"></button>
+            <button class="color-dot" type="button" style="--dot:#f4f1e9" data-color="#f4f1e9" data-name="Pearl White" aria-label="Warna putih"></button>
+            <label class="custom-color" aria-label="Pilih warna kustom">
+              <input id="custom-car-color" type="color" value="#2368c4">
+            </label>
+          </div>
+        </div>
+
+        <span class="control-divider" aria-hidden="true"></span>
+
+        <div class="control-group">
+          <span class="control-label">Finishing</span>
+          <div class="finish-options" aria-label="Pilihan finishing cat mobil">
+            <button class="finish-option active" type="button" data-metallic="0.15" data-roughness="0.08" data-label="Glossy · Clear Coat 2K" aria-pressed="true">
+              <span class="finish-preview finish-glossy" aria-hidden="true"></span>Glossy
+            </button>
+            <button class="finish-option" type="button" data-metallic="0.9" data-roughness="0.2" data-label="Metallic · Fine Flake" aria-pressed="false">
+              <span class="finish-preview finish-metallic" aria-hidden="true"></span>Metallic
+            </button>
+            <button class="finish-option" type="button" data-metallic="0" data-roughness="0.88" data-label="Doff · Matte Finish" aria-pressed="false">
+              <span class="finish-preview finish-matte" aria-hidden="true"></span>Doff
+            </button>
+            <button class="finish-option" type="button" data-metallic="0.58" data-roughness="0.14" data-label="Pearl · Multi Tone" aria-pressed="false">
+              <span class="finish-preview finish-pearl" aria-hidden="true"></span>Pearl
+            </button>
+            <button class="finish-option" type="button" data-metallic="0.18" data-roughness="0.46" data-label="Satin · Soft Sheen" aria-pressed="false">
+              <span class="finish-preview finish-satin" aria-hidden="true"></span>Satin
+            </button>
+          </div>
         </div>
       </div>
     </section>
@@ -2152,9 +2301,17 @@
 
     const studioCar = document.getElementById('studio-car');
     const colorButtons = document.querySelectorAll('.color-dot');
+    const finishButtons = document.querySelectorAll('.finish-option');
     const customCarColor = document.getElementById('custom-car-color');
     const studioColorName = document.getElementById('studio-color-name');
+    const studioFinishName = document.getElementById('studio-finish-name');
     let selectedStudioColor = '#a31313';
+    let selectedStudioFinish = {
+      metallic: 0.15,
+      roughness: 0.08,
+      label: 'Glossy · Clear Coat 2K'
+    };
+    let studioPaintMaterials = [];
 
     function hexToFactor(hex) {
       const value = hex.replace('#', '');
@@ -2166,10 +2323,9 @@
       ];
     }
 
-    function paintStudioCar(hex) {
-      selectedStudioColor = hex;
-
-      if (!studioCar || !studioCar.model) return;
+    function getStudioPaintMaterials() {
+      if (!studioCar || !studioCar.model) return [];
+      if (studioPaintMaterials.length) return studioPaintMaterials;
 
       const materials = studioCar.model.materials || [];
       const excluded = /glass|window|tire|tyre|wheel|rim|chrome|light|lamp|interior|seat|badge|logo/i;
@@ -2188,13 +2344,40 @@
         targets = materials.filter((material) => !excluded.test(material.name || '')).slice(0, 1);
       }
 
+      studioPaintMaterials = targets;
+      return studioPaintMaterials;
+    }
+
+    function paintStudioCar(hex) {
+      selectedStudioColor = hex;
+
+      const targets = getStudioPaintMaterials();
+      if (!targets.length) return;
+
       const colorFactor = hexToFactor(hex);
       targets.forEach((material) => {
         material.pbrMetallicRoughness.setBaseColorFactor(colorFactor);
       });
     }
 
-    studioCar?.addEventListener('load', () => paintStudioCar(selectedStudioColor));
+    function applyStudioFinish(finish) {
+      selectedStudioFinish = finish;
+
+      const targets = getStudioPaintMaterials();
+      if (!targets.length) return;
+
+      targets.forEach((material) => {
+        const pbr = material.pbrMetallicRoughness;
+        pbr.setMetallicFactor(finish.metallic);
+        pbr.setRoughnessFactor(finish.roughness);
+      });
+    }
+
+    studioCar?.addEventListener('load', () => {
+      studioPaintMaterials = [];
+      paintStudioCar(selectedStudioColor);
+      applyStudioFinish(selectedStudioFinish);
+    });
 
     colorButtons.forEach((button) => {
       button.addEventListener('click', () => {
@@ -2209,6 +2392,27 @@
       colorButtons.forEach((item) => item.classList.remove('active'));
       studioColorName.textContent = 'Custom ' + event.target.value.toUpperCase();
       paintStudioCar(event.target.value);
+    });
+
+    finishButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        finishButtons.forEach((item) => {
+          item.classList.remove('active');
+          item.setAttribute('aria-pressed', 'false');
+        });
+
+        button.classList.add('active');
+        button.setAttribute('aria-pressed', 'true');
+
+        const finish = {
+          metallic: Number(button.dataset.metallic),
+          roughness: Number(button.dataset.roughness),
+          label: button.dataset.label
+        };
+
+        studioFinishName.textContent = finish.label;
+        applyStudioFinish(finish);
+      });
     });
   </script>
 </body>
