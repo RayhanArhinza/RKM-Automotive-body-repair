@@ -612,6 +612,33 @@
       text-transform: uppercase;
     }
 
+    .strip-icon {
+      width: 38px;
+      height: 38px;
+      flex: 0 0 38px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(35,104,196,0.18);
+      border-radius: 12px;
+      background: rgba(255,255,255,0.56);
+      color: var(--blue);
+    }
+
+    .strip-icon svg {
+      width: 20px;
+      height: 20px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .strip-text {
+      display: block;
+      line-height: 1;
+    }
+
     .strip-item b {
       color: rgba(255,255,255,0.42);
       font-family: var(--body);
@@ -1408,13 +1435,93 @@
       }
 
       .service-strip-inner {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+        padding-top: 16px;
+        padding-bottom: 18px;
+      }
+
+      .service-strip {
+        border-block: 0;
+        background:
+          radial-gradient(circle at 8% 0%, rgba(62,140,243,0.17), transparent 35%),
+          linear-gradient(145deg, #eaf3ff 0%, #f7fbff 100%);
+      }
+
+      .strip-title {
+        grid-column: 1 / -1;
+        display: flex;
+        gap: 9px;
+        padding: 0 2px 2px;
+        border: 0;
+        color: var(--blue);
+        font-size: 0.62rem;
+        letter-spacing: 0.18em;
+      }
+
+      .strip-title::before {
+        width: 22px;
+        height: 2px;
+        flex: 0 0 22px;
+        background: var(--blue);
+        content: "";
       }
 
       .strip-item {
-        min-height: 66px;
-        border-right: 0;
-        border-bottom: 1px solid rgba(255,255,255,0.18);
+        position: relative;
+        min-width: 0;
+        min-height: 118px;
+        flex-direction: column;
+        justify-content: center;
+        gap: 10px;
+        padding: 14px 6px 13px;
+        border: 1px solid rgba(35,104,196,0.14);
+        border-radius: 16px;
+        background: rgba(255,255,255,0.82);
+        box-shadow: 0 10px 26px rgba(23,85,170,0.08);
+        font-size: clamp(0.95rem, 4.3vw, 1.15rem);
+        text-align: center;
+        overflow: hidden;
+      }
+
+      .strip-item::after {
+        position: absolute;
+        right: 16px;
+        bottom: -3px;
+        left: 16px;
+        height: 4px;
+        border-radius: 999px 999px 0 0;
+        background: linear-gradient(90deg, var(--blue), var(--blue-bright));
+        content: "";
+      }
+
+      .strip-item b {
+        position: absolute;
+        top: 9px;
+        right: 10px;
+        color: #9ab3d2;
+        font-size: 0.57rem;
+        font-weight: 700;
+      }
+
+      .strip-icon {
+        width: 40px;
+        height: 40px;
+        flex-basis: 40px;
+        border-color: rgba(35,104,196,0.13);
+        border-radius: 13px;
+        background: #eef6ff;
+        box-shadow: inset 0 0 0 1px rgba(255,255,255,0.8);
+      }
+
+      .strip-icon svg {
+        width: 21px;
+        height: 21px;
+      }
+
+      .strip-text {
+        max-width: 100%;
+        line-height: 0.95;
       }
 
       .services,
@@ -1647,10 +1754,28 @@
 
     <div class="service-strip" aria-label="Layanan utama Bengkel RKM">
       <div class="service-strip-inner w-full max-w-[1680px] mx-auto px-5 sm:px-8 lg:px-12 2xl:px-16">
-        <p class="strip-title">Melayani</p>
-        <p class="strip-item"><b>01</b> Cat</p>
-        <p class="strip-item"><b>02</b> Poles Body</p>
-        <p class="strip-item"><b>03</b> Las Dodok</p>
+        <p class="strip-title">Layanan Body Repair</p>
+        <p class="strip-item">
+          <b>01</b>
+          <span class="strip-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M7 6h8l2 3v8a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2V6Z"/><path d="M9 6V3h5v3M17 10h2.5M20 8.5l2-1M20 11.5l2 1"/></svg>
+          </span>
+          <span class="strip-text">Cat</span>
+        </p>
+        <p class="strip-item">
+          <b>02</b>
+          <span class="strip-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="m12 3 1.2 3.8L17 8l-3.8 1.2L12 13l-1.2-3.8L7 8l3.8-1.2L12 3Z"/><path d="m18.5 13 .8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8.8-2.2ZM5 14l.7 2.1 2.1.7-2.1.7L5 19.6l-.7-2.1-2.1-.7 2.1-.7L5 14Z"/></svg>
+          </span>
+          <span class="strip-text">Poles Body</span>
+        </p>
+        <p class="strip-item">
+          <b>03</b>
+          <span class="strip-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="m14 3-3 8h5l-6 10 2-8H7l7-10Z"/><path d="M18.5 5.5 20 4M19.5 8H22M17 3.5V1"/></svg>
+          </span>
+          <span class="strip-text">Las Dodok</span>
+        </p>
       </div>
     </div>
 
