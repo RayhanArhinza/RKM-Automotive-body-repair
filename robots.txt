@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://bengkel-cat-mobil-rkm-surabaya.vercel.app/sitemap.xml
