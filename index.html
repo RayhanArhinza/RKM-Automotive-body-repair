@@ -1288,15 +1288,16 @@
     }
 
     .custom-color::after {
+      content: "+";
       position: absolute;
-      inset: 10px;
-      display: grid;
-      place-items: center;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -52%);
       color: var(--muted);
       font-size: 1.15rem;
-      content: "+";
+      line-height: 1;
       pointer-events: none;
-    }
+  }
 
     .custom-color input {
       width: 100%;
